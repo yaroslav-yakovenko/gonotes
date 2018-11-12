@@ -1,8 +1,22 @@
-Golang Notes
+<b>Заметки о Go</b>
 
-Code example project using Golang, Javascript, VueJS and MongoDB for applying for a job.
-This is intended to be a well-ogranized Go Notebook with code snippets, patterns, tutorials and so on.
+Пример информационной системы, разработанной с помощью Golang, Javascript+VueJS+BulmaCSS, MongoDB.
 
-By Dmitriy Titov
+Цели проекта:
+1. Познакомиться с MongoDB
+2. Глубже понять Go, разобраться с неочевидными особенностями, привить идиоматический подход к работе с языком
+3. Предоставить контекст для собеседования при трудоустройстве
 
+Демо: http://gonotes.tk/
+
+Для запуска проекта на своей машине выполните следующее:
+	1. Скопируйте каталог gonotesserver к себе на машину
+	2. При необходимости скомпилируйте сервер с помощью команды 'go build'
+	3. Запустите исполняемый файл
+	4. Подключитесь к http://localhost/
+	
+Проект использует бесплатный облачный экземпляр MongoDB Atlas Cloud, поэтому не требует установки СУБД
+
+Автор - Дмитрий Титов
+dtsp@yandex.ru
 
