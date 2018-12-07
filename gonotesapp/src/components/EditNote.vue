@@ -54,6 +54,7 @@
           <div class="tags has-addons">
             <a class="tag">{{tag.Name}}</a>
             <span class="tag is-dark">{{tag.Description}}</span>
+            <a class="tag is-delete" @click="removeTag(tag)"></a>
           </div>
         </div>
       </div>
@@ -104,9 +105,21 @@ export default {
       if (!this.selectedTags) {
         this.selectedTags = []
       }
+      for (let i = 0; i < this.selectedTags.length; i++) {
+        if (this.selectedTags[i].Name === this.tag) {
+          return
+        }
+      }
       for (let i = 0; i < this.tags.length; i++) {
         if (this.tags[i].Name === this.tag) {
           this.selectedTags.push(this.tags[i])
+        }
+      }
+    },
+    removeTag: function (tag) {
+      for (let i = 0; i < this.selectedTags.length; i++) {
+        if (this.selectedTags[i].Name === tag.Name) {
+          this.selectedTags.splice(i, 1)
         }
       }
     },

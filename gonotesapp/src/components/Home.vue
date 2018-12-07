@@ -173,6 +173,8 @@ export default {
       this.filteredNotes = []
       if (this.selectedTag === '') {
         this.filteredNotes = this.notes
+        this.filterNotesByCategory()
+        return
       }
       let tagID = ''
       for (let i = 0; i < this.tags.length; i++) {
