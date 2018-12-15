@@ -1,4 +1,4 @@
-<b>Заметки о Go</b>
+<h1>Заметки о Go</h1>
 
 Пример информационной системы, разработанной с помощью Golang, Javascript+VueJS+BulmaCSS, MongoDB.
 

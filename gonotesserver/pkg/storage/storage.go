@@ -243,7 +243,6 @@ func (db *MongoDB) AddNote(document model.Note) (err error) {
 func (db *MongoDB) UpdateNote(document model.Note) (err error) {
 
 	collection := db.Database.Collection(masterdata.CollectionNameNotes)
-
 	var filter = bson.D{
 		{
 			Key:   "_id",
@@ -251,7 +250,7 @@ func (db *MongoDB) UpdateNote(document model.Note) (err error) {
 		},
 	}
 
-	res := collection.FindOneAndReplace(context.Background(), filter, document, nil)
+	res := collection.FindOneAndReplace(context.Background(), filter, document)
 	if res == nil {
 		err = errors.New("Storage.UpdateNote UpdateNote error: " + err.Error())
 		return err

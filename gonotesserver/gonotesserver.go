@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gonotes/gonotesserver/pkg/model"
 	"gonotes/gonotesserver/pkg/storage"
 	"log"
 	"net/http"
@@ -9,7 +10,8 @@ import (
 )
 
 var (
-	db *storage.MongoDB
+	db       *storage.MongoDB
+	sessions []model.Session
 )
 
 func main() {

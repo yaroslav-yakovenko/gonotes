@@ -5,6 +5,20 @@ import (
 	"github.com/mongodb/mongo-go-driver/bson/objectid"
 )
 
+// User - registered user
+type User struct {
+	Email    string
+	Password string
+	First    string
+	Last     string
+}
+
+// Session - session of registered user
+type Session struct {
+	Email     string
+	SessionID int64
+}
+
 // Category - category of a note
 type Category struct {
 	ID          objectid.ObjectID `bson:"_id,omitempty" json:"id"`

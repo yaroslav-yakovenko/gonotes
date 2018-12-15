@@ -143,7 +143,7 @@ export default {
       }
       axios.post(postURL, payload, null)
         .then(response => {
-          this.$emit('close')
+          this.$emit('updated')
         }).catch(error => {
           console.log(error)
         }) // axios.post
@@ -163,7 +163,7 @@ export default {
       }
       axios.post(postURL, payload, null)
         .then(response => {
-          this.$emit('close')
+          this.$emit('updated')
         }).catch(error => {
           console.log(error)
         }) // axios.post

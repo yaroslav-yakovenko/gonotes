@@ -2,7 +2,7 @@
   <nav class="navbar gonotes-navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <router-link to="/">
-      <h3 class="is-size-3 header-item" style="color: #375EAB;"> Заметки о Go </h3>
+      <h3 class="is-size-3 header-item" style="color: #375EAB; margin-left: 5px;"> Заметки о Go </h3>
     </router-link>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -33,20 +33,23 @@
       <div class="navbar-item">
       <div class="buttons">
         <a
+          :disabled="!loggedIn"
           class="button"
-          @click="$emit('addNote')"
+          @click="addNote"
         >
           Добавить заметку
         </a>
         <a
+          :disabled="!loggedIn"
           class="button"
-          @click="$emit('addCategory')"
+          @click="addCategory"
         >
           Добавить раздел
         </a>
         <a
+          :disabled="!loggedIn"
           class="button"
-          @click="$emit('addTag')"
+          @click="addTag"
         >
           Добавить маркер
         </a>
@@ -54,13 +57,30 @@
       </div>
     </div>
     <div class="navbar-end">
+      <div class="navbar-item" v-if="!loggedIn">
+        <input class="input" type="email" placeholder="почта" v-model="email" @keyup.enter="login">
+      </div>
+      <div class="navbar-item" v-if="!loggedIn">
+        <input class="input" type="password" placeholder="пароль" v-model="password" @keyup.enter="login">
+      </div>
       <div class="navbar-item">
         <div class="buttons">
           <a class="button" disabled>
             Зарегистроваться
           </a>
-          <a class="button" disabled>
+          <a
+            class="button"
+            @click="login"
+            v-if="!loggedIn"
+          >
             Войти
+          </a>
+          <a
+            class="button"
+            @click="logout"
+            v-if="loggedIn"
+          >
+            Выйти
           </a>
         </div>
       </div>
@@ -75,12 +95,38 @@ export default {
   components: {
   },
   props: {
+    loggedIn: Boolean,    
     categories: Array
   },
   data: function () {
     return {
+      email: '',
+      password: '',
       category: 'Все разделы'
     }
+  },
+  methods: {
+    login: function () {
+      this.$emit('login', this.email, this.password)
+    },
+    logout: function () {
+      this.$emit('logout')
+    },
+    addNote: function () {
+      if (this.loggedIn) {
+        this.$emit('addNote')
+      }
+    },
+    addCategory: function () {
+      if (this.loggedIn) {
+        this.$emit('addCategory')
+      }
+    },
+    addTag: function () {
+      if (this.loggedIn) {
+        this.$emit('addTag')
+      }
+    },
   }
 }
 </script>

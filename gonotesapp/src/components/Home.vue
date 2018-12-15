@@ -3,10 +3,13 @@
 
     <Navbar
       :categories="categories"
+      :loggedIn="loggedIn"
       @categoryChanged="categoryChanged"
       @addCategory="showAddCategory = true"
       @addTag="showAddTag = true"
       @addNote="addNote"
+      @login="login"
+      @logout="logout"
     >
     </Navbar>
 
@@ -20,6 +23,7 @@
       </Tags>
 
       <Notes
+        :loggedIn="loggedIn"
         :notes="filteredNotes"
         :categories="categories"
         :categoryDescription="categoryDescription"
@@ -46,6 +50,7 @@
       :tags="tags"
       :note="note"
       @close="closeNote"
+      @updated="updatedNote"
     >
     </EditNote>
 
@@ -77,6 +82,7 @@ export default {
   },
   data: function () {
     return {
+      loggedIn: false,
       showAddTag: false,
       showAddCategory: false,
       showNoteEditor: false,
@@ -91,6 +97,23 @@ export default {
     }
   },
   methods: {
+    login: function (email, password) {
+      const authURL = 'http://' + window.location.hostname + '/api/v1/authUser'
+      const payload = {
+        Email: email,
+        Password: password
+      }
+      axios.post(authURL, payload, null)
+        .then(response => {
+          console.log(response.data)
+        this.loggedIn = true
+        }).catch(error => {
+          console.log(error)
+        }) // axios.post
+    },
+    logout: function () {
+      this.loggedIn = false
+    },
     fetchCategories: function () {
       const fetchURL = 'http://' + window.location.hostname + '/api/v1/getCategories'
       axios.get(fetchURL)
@@ -148,8 +171,11 @@ export default {
     },
     closeNote: function () {
       this.showNoteEditor = false
-      this.fetchNotes()
     },
+    updatedNote: function () {
+      this.showNoteEditor = false
+      this.fetchNotes()
+    },    
     filterNotesByCategory: function () {
       this.filteredNotes = []
       if (this.selectedCategory === 'Все разделы') {

@@ -15,7 +15,7 @@
             class="is-size-5 note-title"
           >
             <a @click="titleClicked(note)">{{ note.Title }}</a>
-            <a class="button is-white" @click="editClicked(note)">Редактировать</a>
+            <a class="button is-white" v-if="loggedIn" @click="editClicked(note)">Редактировать</a>
           </h5>
           <div
             class="note-body"
@@ -36,6 +36,7 @@
 export default {
   name: 'Notes',
   props: {
+    loggedIn: Boolean,
     notes: Array,
     categoryDescription: String,
     categories: Array

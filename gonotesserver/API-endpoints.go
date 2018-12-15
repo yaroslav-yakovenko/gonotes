@@ -8,6 +8,8 @@ import (
 
 func setAPIEndpoints(router *mux.Router) {
 
+	router.HandleFunc("/api/v1/authUser", authUserHandler).Methods("POST", "OPTIONS")
+
 	router.HandleFunc("/api/v1/getCategories", getCategoriesHandler).Methods("GET", "OPTIONS")
 	router.HandleFunc("/api/v1/addCategory", addCategoryHandler).Methods("POST", "OPTIONS")
 
