@@ -6,6 +6,8 @@ import (
 	"math/rand"
 	"net/http"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 func authUserHandler(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +30,7 @@ func authUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if data.Email != "dtsp@yandex.ru" || data.Password != "password" {
+	if data.Email != "dtsp@yandex.ru" || (bcrypt.CompareHashAndPassword([]byte("$2a$10$uzuCDEFvkHHsjIVEBR3PF.HUFfEi186xze5sSR/wLQBHAkLlQNrBq"), []byte(data.Password)) != nil) {
 		w.WriteHeader(http.StatusUnauthorized)
 		w.Write([]byte("bad credentials"))
 		return

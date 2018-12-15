@@ -14,6 +14,7 @@ func main() {
 	e := struct{}{}
 	f := struct{}{}
 	g := []int{}
+	var h []int
 
 	fmt.Printf("a: %T, %d\n", a, unsafe.Sizeof(a))
 	fmt.Printf("b: %T, %d\n", b, unsafe.Sizeof(b))
@@ -22,6 +23,7 @@ func main() {
 	fmt.Printf("e: %T, %p, %d\n", e, &e, unsafe.Sizeof(e))
 	fmt.Printf("f: %T, %p, %d\n", f, &f, unsafe.Sizeof(f))
 	fmt.Printf("g: %T, %d\n", g, unsafe.Sizeof(g))
+	fmt.Printf("h: %T, %d\n", h, unsafe.Sizeof(h))
 
 	// Output:
 	// a: int, 8
@@ -31,5 +33,6 @@ func main() {
 	// e: struct {}, 0x5791c8, 0
 	// f: struct {}, 0x5791c8, 0
 	// g: []int, 24
+	// h: []int, 24
 
 }
