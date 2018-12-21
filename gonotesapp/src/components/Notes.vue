@@ -23,7 +23,9 @@
             v-show="selectedTitle === note.Title"
           >
             <div class="control">
-              <textarea class="textarea" readonly placeholder="Normal textarea" v-model="note.Body" rows="20"></textarea>
+              <highlight-code lang="go">{{ note.Body }}</highlight-code>
+              <!-- <pre v-highlightjs="note.Body"><code class="go"></code></pre> -->
+              <!-- <textarea class="textarea" readonly placeholder="Normal textarea" v-model="note.Body" rows="20"></textarea> -->
             </div>
           </div>
         </div>
