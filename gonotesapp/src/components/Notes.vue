@@ -11,7 +11,7 @@
           v-for="note in notes" :key="note.name"
         >
           <h5
-            v-if="note.CategoryID === cat.id"
+            v-show="note.CategoryID === cat.id"
             class="is-size-5 note-title"
           >
             <a @click="titleClicked(note)">{{ note.Title }}</a>
@@ -19,13 +19,10 @@
           </h5>
           <div
             class="note-body"
-            v-if="note.CategoryID === cat.id"
-            v-show="selectedTitle === note.Title"
+            v-show="note.CategoryID === cat.id && selectedTitle === note.Title"
           >
             <div class="control">
               <highlight-code lang="go">{{ note.Body }}</highlight-code>
-              <!-- <pre v-highlightjs="note.Body"><code class="go"></code></pre> -->
-              <!-- <textarea class="textarea" readonly placeholder="Normal textarea" v-model="note.Body" rows="20"></textarea> -->
             </div>
           </div>
         </div>
