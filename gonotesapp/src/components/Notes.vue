@@ -5,7 +5,7 @@
           v-for="cat in catsFiltered" :key="cat.id"
         >
         <h4 class="is-size-4 note-title">
-        {{cat.Name}} - <span style="color: black;">{{cat.Description}}</span>
+        <span style="font-weight: bold; color: black;">{{cat.Name}}</span> - <span style="color: black;">{{cat.Description}}</span>
         </h4>
         <div
           v-for="note in notes" :key="note.name"
